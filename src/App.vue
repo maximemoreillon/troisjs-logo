@@ -3,7 +3,7 @@
     <Camera :position="{ x: 5, y: 10, z: 5 }" />
     <Scene>
       <PointLight :position="{ y: 50, z: 50 }" />
-      <GltfModel src=" /assets/logo.gltf" @load="onReady" ref="logo"
+      <GltfModel src="assets/logo.gltf" @load="onReady" ref="logo"
         :rotation="{ x: Math.PI / 9, y: Math.PI / 4, z: 0.0 * Math.PI}" />
     </Scene>
   </Renderer>
