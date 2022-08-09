@@ -2,18 +2,29 @@
   <Renderer ref="renderer" antialias :orbit-ctrl="{ enableDamping: false }" resize="window">
     <Camera :position="{ x: 5, y: 10, z: 5 }" />
     <Scene>
-      <PointLight :position="{ y: 50, z: 50 }" />
-      <GltfModel src="assets/logo.gltf" @load="onReady" ref="logo"
-        :rotation="{ x: Math.PI / 9, y: Math.PI / 4, z: 0.0 * Math.PI}" />
+      <AmbientLight :intensity="0.2" />
+
+
+      <PointLight :position="{x: 0, y: 10, z: 0}" />
+      <GltfModel src="assets/logo.gltf" @load="onReady" ref="logo" />
+
+      <Mesh :position="{ y: -1 }" :rotation="{x: - Math.PI/2}">
+        <PlaneGeometry :width="100" :height="100" />
+        <PhysicalMaterial color="#111111" />
+      </Mesh>
     </Scene>
   </Renderer>
 </template>
-
 <script>
 
 export default {
-
+  data(){
+    return {
+      
+    }
+  },
   methods: {
+
     onReady(){
       const renderer = this.$refs.renderer;
 
@@ -22,16 +33,10 @@ export default {
 
       renderer.onBeforeRender(() => {
         if (logo.o3d) logo.o3d.rotation.y -= 0.003
-
-      });
-      
+      })
     },
-    onProgress() {
-
-      console.log('Progress')
-    }
   }
-};
+}
 </script>
 
 <style>
